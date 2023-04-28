@@ -1,0 +1,441 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>@ViewData["Title"] - PTL.AdminApp</title>
+
+    <link href="~/themes/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="~/themes/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="~/themes/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link href="~/themes/font-awesome/css/regular.min.css" rel="stylesheet" />
+
+    <link href="~/themes/font-awesome/css/brands.min.css" rel="stylesheet" />
+
+    <link href="~/themes/font-awesome/css/solid.min.css" rel="stylesheet" />
+
+    <link href="~/themes/font-awesome/css/all.min.css" rel="stylesheet" />
+
+    <link href="~/themes/css/plugins/iCheck/custom.css" rel="stylesheet">
+
+    <link href="~/themes/css/animate.css" rel="stylesheet">
+
+    <link href="~/themes/css/style.css" rel="stylesheet">
+
+    <link href="~/themes/css/content.css" rel="stylesheet">
+
+    <!-- Sweet Alert -->
+    <link href="~/themes/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+
+    <link href="~/themes/css/plugins/chosen/chosen.css" rel="stylesheet">
+
+    <link href="~/themes/css/plugins/colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet">
+
+    <link href="~/themes/css/plugins/switchery/switchery.css" rel="stylesheet">
+
+    <link href="~/themes/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+
+    <link href="~/themes/css/plugins/nouslider/jquery.nouislider.css" rel="stylesheet">
+
+    <link href="~/themes/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+
+    <link href="~/themes/css/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+    <link href="~/themes/css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">
+
+    <link href="~/themes/css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+
+    <link href="~/themes/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+
+    <link href="~/themes/css/plugins/clockpicker/clockpicker.css" rel="stylesheet">
+
+    <link href="~/themes/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
+
+    <link href="~/themes/css/plugins/select2/select2.min.css" rel="stylesheet">
+
+    <link href="~/themes/css/plugins/touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
+
+    <link href="~/themes/css/plugins/fullcalendar/fullcalendar.css" rel="stylesheet">
+
+    <link href="~/themes/css/plugins/fullcalendar/fullcalendar.print.css" rel='stylesheet' media='print'>
+
+    <link href="~/themes/css/plugins/codemirror/ambiance.css" rel="stylesheet">
+
+    <link href="~/themes/css/plugins/codemirror/codemirror.css" rel="stylesheet">
+
+    <link href="~/themes/css/plugins/jsTree/style.min.css" rel="stylesheet">
+
+    <link href="~/themes/css/plugins/summernote/summernote.css" rel="stylesheet">
+
+    <link href="~/themes/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
+
+    <link href="~/themes/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/ProcessImage/dist/cropper.css">
+
+    <link href="~/themes/css/bootstrap-multiselect.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="~/themes/css/bootstrap-select.min.css">
+
+    <style>
+        .form-control {
+        }
+
+        .cropit-preview, .cropit-preview-thumb {
+            background-color: #f8f8f8;
+            background-size: cover;
+            border: 5px solid #ccc;
+            border-radius: 3px;
+            margin-top: 7px;
+            width: 200px;
+            min-height: 115px;
+        }
+
+        .cropit-preview-image-container {
+            cursor: move;
+        }
+
+        .cropit-preview-background {
+            opacity: .2;
+            cursor: auto;
+        }
+
+        .image-size-label {
+            margin-top: 10px;
+        }
+
+        input, .export {
+            position: relative;
+            z-index: 10;
+            display: block;
+        }
+
+        button {
+            margin-top: 0px;
+            height: 34px;
+        }
+
+        .img-container {
+            height: 400px;
+        }
+
+        .bootstrap-touchspin .input-group-btn-vertical {
+            position: relative;
+            white-space: nowrap;
+            width: 1%;
+            vertical-align: top;
+            padding-top: 0px !important;
+        }
+
+        .touchspin3 {
+            margin-top: 10px;
+            height: 38px;
+        }
+
+        .bootstrap-touchspin {
+            padding: 0px;
+            margin-top: -10px;
+        }
+
+        .icon-service {
+            margin-right: 5px;
+            cursor: pointer;
+            height: 20px;
+        }
+
+        .autocomplete-suggestions {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            border: 1px solid #999;
+            background: #FFF;
+            cursor: default;
+            overflow: auto;
+            -webkit-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64);
+            -moz-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64);
+            box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64);
+        }
+
+        .autocomplete-suggestion {
+            padding: 2px 5px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .autocomplete-no-suggestion {
+            padding: 2px 5px;
+        }
+
+        .autocomplete-selected {
+            background: #F0F0F0;
+        }
+
+        .autocomplete-suggestions strong {
+            font-weight: bold;
+            color: maroon;
+        }
+
+        .autocomplete-group {
+            padding: 2px 5px;
+            font-weight: bold;
+            font-size: 16px;
+            color: #000;
+            display: block;
+            border-bottom: 1px solid #000;
+        }
+
+        td {
+            padding: 4px !important;
+            background-color: none !important;
+        }
+
+        form-control {
+            padding: 1px !important;
+        }
+    </style>
+    <link rel="shortcut icon" href="favicon.ico" />
+
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <span>
+                                <img alt="image" class="img-circle" src="img/PTL.jpg" />
+                            </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                                    <span class="block m-t-xs">
+                                        <strong class="font-bold">@User.Identity.Name</strong>
+                                    </span> <span class="text-muted text-xs block">Tài khoản <b class="caret"></b></span>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="#">Tham số connection</a></li>
+                                <li><a asp-controller="User" asp-action="Index">Thiết lập hồ sơ cá nhân</a></li>
+                                <li><a href="#">Đổi ảnh avatar cá nhân</a></li>
+                                <li><a href="#">Quản lý uỷ quyền</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Công việc cần xử lý</a></li>
+                                <li><a href="#">Thiết lập hồ sơ cá nhân</a></li>
+                                <li><a href="#">Theo dõi uỷ quyền</a></li>
+                                <li><a href="#">Thông tin cấp key</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">vi</a></li>
+                                <li><a href="#">en</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Đổi mật khẩu</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Log sử dụng</a></li>
+                                <li class="divider"></li>
+                                <li><a asp-controller="Login" asp-action="Index">Logout</a></li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            IN+
+                        </div>
+                    </li>
+                    <li >
+                        <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Hệ thống</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a asp-controller="Country" asp-action="Index">Quốc Gia</a></li>
+                            <li><a asp-controller="Ethnic" asp-action="Index">Dân Tộc</a></li>
+                            <li><a asp-controller="Region" asp-action="Index">Vùng Miền</a></li>
+                            <li><a asp-controller="Province" asp-action="Index">Tỉnh Thành</a></li>
+                            <li><a asp-controller="District" asp-action="Index">Quận Huyện</a></li>
+                            <li><a asp-controller="Village" asp-action="Index">Xã Phường</a></li>
+                            <li><a asp-controller="AdministrativeUnit" asp-action="Index">Đơn Vị Hành Chính</a></li>
+                            <li><a asp-controller="WorkUnit" asp-action="Index">Đơn Vị Công Tác</a></li>                       
+                            <li><a asp-controller="Expertise" asp-action="Index">Chuyên Môn</a></li>
+                            <li><a asp-controller="School" asp-action="Index">Trường Học</a></li>
+                            <li><a asp-controller="Graduation" asp-action="Index">Loại Tốt Nghiệp</a></li>
+                        </ul>
+                    </li>
+                    <li >
+                        <a href="#" style="padding-left: 5px;"><i class="fas fa-users-cog" style="font-size:16px; "></i> <span class="nav-label">Quản trị hệ thống</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a asp-controller="User" asp-action="Index">Quản lý người dùng</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom">
+                @await Component.InvokeAsync("Navigation")
+            </div>
+            <div class="row  border-bottom white-bg dashboard-header">
+                <div class="col-lg-12">
+                    @RenderBody()                 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mainly scripts -->
+    <script src="~/themes/js/jquery-2.1.1.js"></script>
+
+    <script src="~/themes/js/bootstrap.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="~/themes/js/inspinia.js"></script>
+
+    <script src="~/themes/js/plugins/pace/pace.min.js"></script>
+
+    <script src="~/themes/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Chosen -->
+    <script src="~/themes/js/plugins/chosen/chosen.jquery.js"></script>
+
+    <!-- JSKnob -->
+    <script src="~/themes/js/plugins/jsKnob/jquery.knob.js"></script>
+
+    <!-- Input Mask-->
+    <script src="~/themes/js/plugins/jasny/jasny-bootstrap.min.js"></script>
+
+    <!-- Data picker -->
+    <script src="~/themes/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+
+    <!-- NouSlider -->
+    <script src="~/themes/js/plugins/nouslider/jquery.nouislider.min.js"></script>
+
+    <!-- Switchery -->
+    <script src="~/themes/js/plugins/switchery/switchery.js"></script>
+
+    <!-- IonRangeSlider -->
+    <script src="~/themes/js/plugins/ionRangeSlider/ion.rangeSlider.min.js"></script>
+
+    <!-- iCheck -->
+    <script src="~/themes/js/plugins/iCheck/icheck.min.js"></script>
+
+    <!-- MENU -->
+    <script src="~/themes/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+    <!-- Color picker -->
+    <script src="~/themes/js/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+
+    <!-- Clock picker -->
+    <script src="~/themes/js/plugins/clockpicker/clockpicker.js"></script>
+
+    <script src="~/themes/js/plugins/bootstrap-datetimepicker/moment-with-locales.js"></script>
+
+    <script src="~/themes/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
+
+    <script src="~/themes/js/plugins/fullcalendar/moment.min.js"></script>
+
+    <!-- Date range picker -->
+    <script src="~/themes/js/plugins/daterangepicker/daterangepicker.js"></script>
+
+    <!-- Select2 -->
+    <script src="~/themes/js/plugins/select2/select2.full.min.js"></script>
+
+    <!-- TouchSpin -->
+    <script src="~/themes/js/plugins/touchspin/jquery.bootstrap-touchspin.min.js"></script>
+
+    <!-- Sweet alert -->
+    <script src="~/themes/js/plugins/sweetalert/sweetalert.min.js"></script>
+
+    <!-- JsTree -->
+    <script src="~/themes/js/plugins/jsTree/jstree.min.js"></script>
+
+    <!-- Full Calendar -->
+    <script src="~/themes/js/plugins/fullcalendar/fullcalendar.min.js"></script>
+
+    <!-- CodeMirror -->
+    <script src="~/themes/js/plugins/codemirror/codemirror.js"></script>
+
+    <script src="~/themes/js/plugins/codemirror/mode/javascript/javascript.js"></script>
+
+    <script src="~/tinymce/tinymce.min.js"></script>
+
+    <script src="~/themes/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <script src="~/themes/js/plugins/summernote/summernote.min.js"></script>
+
+    <!-- GITTER -->
+    <script src="~/themes/js/plugins/gritter/jquery.gritter.min.js"></script>
+
+    <!-- Sparkline -->
+    <script src="~/themes/js/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- Sparkline demo data  -->
+    <script src="~/themes/js/demo/sparkline-demo.js"></script>
+
+    <!-- ChartJS-->
+    <script src="~/themes/js/plugins/chartJs/Chart.min.js"></script>
+
+    <!-- Toastr -->
+    <script src="~/themes/js/plugins/toastr/toastr.min.js"></script>
+
+    <!-- Diff march patch -->
+    <script src="~/themes/js/plugins/diff_match_patch/javascript/diff_match_patch.js"></script>
+
+    <!-- jQuery pretty text diff -->
+    <script src="~/themes/js/plugins/preetyTextDiff/jquery.pretty-text-diff.min.js"></script>
+
+    <!-- jQuery max length -->
+    <script src="~/themes/js/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js" type="text/javascript"></script>
+
+    <script src="~/themes/js/plugins/jquery-cropit/jquery.cropit.js" type="text/javascript"></script>
+
+    <script src="~/themes/js/plugins/nestable/jquery.nestable.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="~/themes/js/plugins/autocomplete/jquery.mockjax.js"></script>
+
+    <script type="text/javascript" src="~/themes/js/plugins/autocomplete/jquery.autocomplete.js"></script>
+
+    <script type="text/javascript" src="~/themes/js/plugins/autocomplete/countries.js"></script>
+
+    <script type="text/javascript" src="~/themes/js/plugins/maskedit/jquery.mask.min.js"></script>
+
+    <script src="~/themes/js/bootstrap-multiselect.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="~/themes/js/plugins/loadingOverlay/loadingoverlay.min.js"></script>
+
+    <script src="~/themes/js/bootstrap-select.min.js"></script>
+
+    <script src="~/ProcessImage/assets/js/tether.min.js"></script>
+
+    <script src="~/ProcessImage/dist/cropper.js"></script>
+
+    <script src="~/ProcessImage/js/main.js"></script>
+
+    <script type="text/javascript" src="~/themes/js/plugins/sticky/ResizeSensor.js"></script>
+
+    <script type="text/javascript" src="~/themes/js/plugins/sticky/theia-sticky-sidebar.js"></script>
+
+    <script type="text/javascript" src="~/themes/js/plugins/colResizable/colResizable-1.6.min.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/adminnumber.js"></script>
+
+    <script type="text/javascript" src="~/javascript/onemes3.js"></script>
+
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "progressBar": true,
+            "preventDuplicates": false,
+            "positionClass": "toast-bottom-right",
+            "onclick": null,
+            "showDuration": "400",
+            "hideDuration": "1000",
+            "timeOut": "1000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

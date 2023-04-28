@@ -1,0 +1,78 @@
+﻿@model PTL.ViewModels.VillageCreateRequest
+
+@{
+    ViewData["Title"] = "Create";  
+}
+
+<div class="modal fade" id="addVillage">
+    <div class="modal immodal" style="overflow: hidden" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">          
+                <div class="panel-heading">
+                    <div class="panel-heading">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">Thêm mới Xã Phường</h4>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="OrdinalNumber" class="control-label">Stt<span style='color:red'>*</span></label>
+                            <input asp-for="OrdinalNumber" class="form-control" required />
+                            <span asp-validation-for="OrdinalNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Code" class="control-label">Mã<span style='color:red'>*</span></label>
+                            <input asp-for="Code" class="form-control" required />
+                            <span asp-validation-for="Code" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label">Tên<span style='color:red'>*</span></label>
+                            <input asp-for="Name" class="form-control" required />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DistrictId" class="control-label">Quận Huyện<span style='color:red'>*</span></label>
+                            <div>
+                                <select asp-for="DistrictId" id="cbbDistrict" style="width: 100%;" class="form-control select2" required></select>
+                            </div>
+                            <span asp-validation-for="DistrictId" class="text-danger"></span>
+                        </div>                       
+                        <div class="form-group">
+                            <label asp-for="Description" class="control-label"></label>
+                            <input asp-for="Description" class="form-control" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Effect" class="control-label">Hiệu lực<span style='color:red'>*</span></label>
+                           <div>
+                                <label class="radio-inline"><input type="radio" asp-for="Effect" name="Effect"  value="0">không</label>
+                                <label class="radio-inline"><input type="radio" asp-for="Effect" name="Effect" value="1" checked>Có</label>
+                                <span asp-validation-for="Effect" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DateCreated" class="control-label"></label>
+                            <input asp-for="DateCreated" class="form-control" required />
+                            <span asp-validation-for="DateCreated" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Note" class="control-label"></label>
+                            <input asp-for="Note" class="form-control" />
+                            <span asp-validation-for="Note" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-sm btn-primary mr-5px" type="submit"><strong>Chấp nhận</strong></button>
+                            <button class="btn btn-sm btn-primary mr-5px" type="button"><strong>Bỏ qua</strong></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,147 @@
+﻿@using PTL.ViewModels;
+@model PagedResult<PTL.ViewModels.EthnicVm>
+
+@{
+    ViewData["Title"] = "Danh sách Dân Tộc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script>
+        setTimeout(function () {
+            $('#msgAlert').fadeOut('slow');
+        }, 2000);
+        $(function () {
+            var PlaceHolderElement = $('#PlaceHolderElement');
+            $('button[data-toggle ="ajax-modal"]').click(function (event) {
+                var url = $(this).data('url');
+                var decodedUrl = decodeURIComponent(url);
+                $.get(decodedUrl).done(function (data) {
+                    PlaceHolderElement.html(data);
+                    PlaceHolderElement.find('.modal').modal('show');
+                })
+            })
+
+            $('a[data-toggle ="ajax-modal"]').click(function (event) {
+                var url = $(this).data('url');
+                var decodedUrl = decodeURIComponent(url);
+                $.get(decodedUrl).done(function (data) {
+                    PlaceHolderElement.html(data);
+                    PlaceHolderElement.find('.modal').modal('show');
+                })
+            })
+
+            PlaceHolderElement.on('click', '[data-save ="modal"]', function (event) {
+                var form = $(this).parents('.modal').find('form');
+                var actionUrl = form.attr('action');
+                var url = "/regions/" + actionUrl;
+                var sendData = form.serialize();
+                $.post(url, sendData).done(function (data) {
+                    PlaceHolderElement.find('.modal').modal('hide');
+                })
+            })
+        })
+    </script>
+}
+<div id="PlaceHolderElement"></div>
+<div id="divListForm">
+    <div class="ibox float-e-margins">
+         <div class="ibox-title">
+             <h5>Danh sách Dân Tộc</h5>            
+        </div>
+         <div class="ibox-content">
+            <button type="button" style="margin-bottom:5px;padding:0px; width:80px;height:34px" class="btn btn-sm btn-primary"><i class="fa fa-download"></i> File mẫu</button>
+            <button type="button" style="margin-bottom:5px;padding:0px; width:80px;height:34px" class="btn btn-sm btn-primary"> Xuất dữ liệu</button>
+            <button type="button" style="margin-bottom:5px;padding:0px; width:80px;height:34px" class="btn btn-sm btn-primary">Nhập dữ liệu</button>
+            <div class="fileinput fileinput-new" data-provides="fileinput">
+                <span class="btn btn-default btn-file">
+                    <span class=" fileinput-new">Chọn File</span>
+                    <span class=" fileinput-exists\">Chọn lại</span><input type="file" name="..." id="fileUpload" />
+                </span>
+                <span class="fileinput-filename"></span>
+                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none" id="aexit">×</a>
+            </div>
+            <button title="Thêm mới bản ghi" type="button" class="btn btn-primary" style="float:right;" data-toggle="ajax-modal" data-target="#addRegion" data-url="@Url.Action("Create")">Thêm</button>
+            <div id="divProcessing" class="processing"></div>
+             <div id="divVungMienContent">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                            <form asp-action="Index" method="get">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" style="margin-top: 8px;" />
+                                    </div>
+                                    <div class="cold-md-3">
+                                        <button type="submit" class="btn btn-primary">Tìm</button>
+                                        <button type="button" onclick="window.location.href='/Ethnic/Index'" class="btn btn-dark">Reset</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        @if (ViewBag.SuccessMsg != null)
+                        {
+                            <div id="msgAlert" class="alert alert-success" role="alert">
+                                @ViewBag.SuccessMsg
+                            </div>
+                        }
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width:50px">
+                                        Stt
+                                    </th>
+                                    <th style="width:100px">
+                                        Mã
+                                    </th>
+                                    <th style="width:200px">
+                                        Tên
+                                    </th>
+                                    <th style="width:350px">
+                                        Mô tả
+                                    </th>
+                                    <th style ="width:250px">
+                                        Ngày tạo
+                                    </th>
+                                    <th style="width:60px; text-align: center;"><a style="font-weight: bold; color: white;"><i class="far fa-times-circle" title="Xoá tất cả"></i></a></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Items)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a data-toggle="ajax-modal" data-target="#addRegion" data-url="@Url.Action($"Details/{item.Id}")"> @Html.DisplayFor(modelItem => item.OrdinalNumber)</a>
+                                        </td>
+                                        <td>
+                                            <a data-toggle="ajax-modal" data-target="#addRegion" data-url="@Url.Action($"Details/{item.Id}")">@Html.DisplayFor(modelItem => item.Code)</a>
+                                        </td>
+                                        <td>
+                                            <a data-toggle="ajax-modal" data-target="#addRegion" data-url="@Url.Action($"Details/{item.Id}")">@Html.DisplayFor(modelItem => item.Name)</a>
+                                        </td>
+                                        <td>
+                                            <a data-toggle="ajax-modal" data-target="#addRegion" data-url="@Url.Action($"Details/{item.Id}")">@Html.DisplayFor(modelItem => item.Description)</a>
+                                        </td>
+                                        <td>
+                                            <a data-toggle="ajax-modal" data-target="#addRegion" data-url="@Url.Action($"Details/{item.Id}")">@Html.DisplayFor(modelItem => item.DateCreated)</a>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <a data-toggle="ajax-modal" data-target="#addRegion" data-url="@Url.Action($"Edit/{item.Id}")"><i class="far fa-edit" title="Sửa vùng miền"></i></a>
+                                            <a data-toggle="ajax-modal" data-target="#addRegion" data-url="@Url.Action($"Delete/{item.Id}")"><i class="far fa-times-circle" title="Xoá vùng miền"></i></a>                                            
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    @await Component.InvokeAsync("Pager", Model)
+                </div>
+             </div>
+        </div>
+    </div>
+</div>

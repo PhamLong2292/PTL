@@ -1,0 +1,92 @@
+﻿@using PTL.ViewModels
+@model LoginRequest
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Đăng nhập hệ thống</title>
+
+    <link href="~/themes/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+
+    <link href="~/themes/font-awesome/css/font-awesome.css" type="text/css" rel="stylesheet">
+
+    <link href="~/themes/css/animate.css" type="text/css" rel="stylesheet">
+
+    <link href="~/themes/css/style.css" type="text/css" rel="stylesheet">
+
+    <!-- Sweet Alert -->
+    <link href="~/themes/css/plugins/sweetalert/sweetalert.css" type="text/css" rel="stylesheet">
+
+    <script src="~/themes/js/store.min.js"></script>
+</head>
+<body class="bg-primary">
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="middle-box text-center loginscreen" style="width:382px">
+                    <div class="ibox-content" style="border-radius: 10px; box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);">
+                        <div style="padding: 15px;"> 
+                            <img src="~/img/chaybishop94.png" />
+                        </div>
+                        <div style="text-align: center;padding-bottom:40px;">
+                            <strong id="titleLogin" class="title-Login" style="color: #3578e5;padding-top:15px;padding-bottom:15px;font-size: 18px"></strong>
+                        </div>
+                        <form asp-action="Index" asp-controller="Login" method="post">
+                            <div class="form-group" style="padding-left: 18px; padding-right: 21px;padding-top:15px;padding-bottom: 10px;">
+                                <p style="text-align: left;margin-bottom: 0px;color:#3578e5;">Tên tài khoản</p>
+                                <input style="border-radius:3px;height:30px;" autocomplete="off" onkeypress="if(event.keyCode == 13){document.getElementById('txtPassword').select();document.getElementById('txtPassword').focus();}\" id="txtLoginName" asp-for="UserName" type="text" class="form-control" placeholder="Tài khoản truy cập" autofocus required>
+                            </div>
+                            <div class="form-group" style="padding-right: 21px;padding-bottom: 10px;padding-left: 18px;">
+                                <p style="text-align:left;margin-bottom:0px;color:#3578e5;">Mật khẩu</p>
+                                <input style="border-radius:3px; height: 30px" onkeypress="if(event.keyCode == 13){ $('#btnLogin').click();}\" id="txtPassword" asp-for="Password" type="password" class="form-control" placeholder="Mật khẩu truy cập" required>
+                            </div>
+                            <div class="form-group">                             
+                                <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input" asp-for="RememberMe" type="checkbox" />
+                                    Nhớ mật khẩu
+                                </div>
+                            </div>
+                            <div id="divCaptcha" style="width:100%; padding-left:18px;padding-bottom:10px;"></div>
+                            <div class="row">
+                                <div id="divSubmit" style="padding-left:18px; padding-right:20px;" class="form-group">
+                                    <div style="text-align:left; padding-left:15px; " class="col-md-7">
+                                        <a class="small" href="/User/ForgotPassword">Bạn quên mật khẩu?</a>
+                                    </div>
+                                    <div class="col-md-5" style="padding-right:15px;">
+                                        <button id="btnLogin" type="submit" class="btn btn-primary full-width">Đăng nhập</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <p style="text-align:center;padding-top:40px;"> <small>"Phiên bản PTL 1709 &copy; 2023</small> </p>
+                    </div>
+                </div>
+            </main>
+        </div>
+  
+    </div>
+    <script src="~/themes/js/jquery-2.1.1.js"></script>
+
+    <script src="~/themes/js/bootstrap.min.js"></script>
+
+    <script src="~/themes/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+    <script src="~/themes/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="~/themes/js/inspinia.js"></script>
+
+    <script src="~/themes/js/plugins/pace/pace.min.js"></script>
+
+    <!-- Sweet alert -->
+    <script src="~/themes/js/plugins/sweetalert/sweetalert.min.js"></script>
+</body>
+</html>

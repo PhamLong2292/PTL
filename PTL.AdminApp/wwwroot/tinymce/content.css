@@ -1,0 +1,181 @@
+p
+{
+    text-align:justify;
+    font-size:12px;
+}
+
+.CssBoxRelationNewsLeft
+{
+    background-color:#eef9e9;
+    padding:5px;
+    float:left;
+    width:200px;
+    background-color:#eef9e9;
+    margin-right:10px;
+}
+
+.CssBoxRelationNewsLeft .tdImage
+{
+    padding:3px!important;
+    width:60px !important;
+}
+
+.CssBoxRelationNewsLeft .tdInfo
+{
+    padding:3px;
+}
+
+.CssBoxRelationNewsLeft table
+{
+    width:100%;
+}
+
+.CssBoxRelationNewsLeft ul
+{
+    padding:2px;
+    margin-left:20px;
+}
+.CssBoxRelationNewsLeft li
+{
+    list-style-type:none !important;
+    padding:4px;
+    list-style-position:inside;
+}
+
+
+
+.CssBoxRelationNewsRight
+{
+    background-color:#eef9e9;
+    padding:5px;
+    float:right;
+    width:200px;
+    background-color:#eef9e9;
+    margin-left:10px;
+}
+
+.CssBoxRelationNewsRight table
+{
+    width:100%;
+}
+
+.CssBoxRelationNewsRight ul
+{
+    padding:2px;
+    margin-left:20px;
+}
+.CssBoxRelationNewsRight li
+{
+    list-style-type:none !important;
+    padding:4px;
+    list-style-position:inside;
+}
+
+
+.CssBoxRelationNewsRight .tdImage
+{
+    padding:3px;
+    width:60px;
+}
+
+.CssBoxRelationNewsRight .tdInfo
+{
+    padding:3px;
+}
+
+
+.CssBoxRelationNewsCenter
+{
+    background-color:#eef9e9;
+    padding:5px;
+    background-color:#eef9e9;
+}
+
+.CssBoxRelationNewsCenter table
+{
+    width:100%;
+}
+
+.CssBoxRelationNewsCenter ul
+{
+    padding:2px;
+    margin-left:20px;
+}
+.CssBoxRelationNewsCenter li
+{
+    list-style-type:square;
+    padding:4px;
+    list-style-position:inside;
+}
+
+
+
+
+.CssBoxRelationNewsCenter .tdImage
+{
+    padding:3px;
+    width:60px;
+}
+
+.CssBoxRelationNewsCenter .tdInfo
+{
+    padding:3px;
+}
+
+
+
+.CssBlockLeft {
+    background-color:#eef9e9;
+    padding:15px;
+    margin-right:10px;
+}
+
+.CssBlockRight {
+    background-color:#eef9e9;
+    padding:15px;
+    margin-left:10px;
+}
+
+.CssBlock {
+    background-color:#eef9e9;
+    padding:5px;
+}
+
+.CssBlock li {
+    list-style-type:square;
+    padding:4px;
+    list-style-position:inside;
+}
+
+.CssBlockWithHeading{
+    border:solid 1px silver;
+}
+
+.CssBlockWithHeading .title
+{
+    background-color:#eef9e9;
+    color:black;
+    height:15px;
+    padding:4px;
+}
+
+.CssBlockWithHeading .body
+{
+    padding:4px;
+    margin-top:10px;   
+}
+
+.CssImageRelationNewsThumb
+{
+    width:60px !important;
+}
+
+.CssImageDescription
+{
+    text-align:center;
+    font-style:italic;
+    color:Blue;
+    font-size:10px;
+    margin-top:5px;
+    margin-bottom:5px;
+}

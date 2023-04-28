@@ -1,0 +1,26 @@
+﻿@model PTL.ViewModels.SchoolDeleteRequest
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="modal fade" id="addSchool">
+    <div class="modal immodal" style="overflow: hidden" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="panel-heading">
+                    <div class="panel-heading">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">Bạn có chắc chắn muốn xoá!</h4>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form asp-action="Delete">
+                        <input type="submit" value="Delete" class="btn btn-default" /> |
+                        <a asp-action="Index">Bỏ qua</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

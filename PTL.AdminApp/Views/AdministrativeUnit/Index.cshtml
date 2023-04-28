@@ -1,0 +1,209 @@
+﻿@using PTL.ViewModels;
+@model PagedResult<PTL.ViewModels.AdministrativeUnitVm>
+
+@{
+    ViewData["Title"] = "Danh sách Đơn Vị hành Chính";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script>
+        setTimeout(function () {
+            $('#msgAlert').fadeOut('slow');
+            CallInitSelect2('cbbCountry', '/DataService/CountrySelect/', 'Quốc gia');
+            CallInitSelect2('cbbRegion', '/DataService/RegionSelect/', 'Vùng miền');
+            CallInitSelect2('cbbVillage', '/DataService/VillageSelect/', 'Xã Phường');
+            CallInitSelect2('cbbDistrict', '/DataService/DistrictSelect/', 'Quận Huyện');
+            CallInitSelect2('cbbProvince', '/DataService/ProvinceSelect/', 'Tỉnh Thành');
+        }, 2000);
+
+        $(function () {
+            var PlaceHolderElement = $('#PlaceHolderElement');
+            $('button[data-toggle ="ajax-modal"]').click(function (event) {
+                var url = $(this).data('url');
+                var decodedUrl = decodeURIComponent(url);
+                $.get(decodedUrl).done(function (data) {
+                    PlaceHolderElement.html(data);
+                    PlaceHolderElement.find('.modal').modal('show');
+                    CallInitSelect2('cbbCountry', '/DataService/CountrySelect/', 'Quốc gia');
+                    CallInitSelect2('cbbRegion', '/DataService/RegionSelect/', 'Vùng miền');
+                    CallInitSelect2('cbbVillage', '/DataService/VillageSelect/', 'Xã Phường');
+                    CallInitSelect2('cbbDistrict', '/DataService/DistrictSelect/', 'Quận Huyện');
+                    CallInitSelect2('cbbProvince', '/DataService/ProvinceSelect/', 'Tỉnh Thành');
+                })
+            })
+
+            $('a[data-toggle ="ajax-modal"]').click(function (event) {
+                var url = $(this).data('url');
+                var decodedUrl = decodeURIComponent(url);
+                $.get(decodedUrl).done(function (data) {
+                    PlaceHolderElement.html(data);
+                    PlaceHolderElement.find('.modal').modal('show');
+                    CallInitSelect2('cbbCountry', '/DataService/CountrySelect/', 'Quốc gia');
+                    CallInitSelect2('cbbRegion', '/DataService/RegionSelect/', 'Vùng miền');
+                    CallInitSelect2('cbbVillage', '/DataService/VillageSelect/', 'Xã Phường');
+                    CallInitSelect2('cbbDistrict', '/DataService/DistrictSelect/', 'Quận Huyện');
+                    CallInitSelect2('cbbProvince', '/DataService/ProvinceSelect/', 'Tỉnh Thành');
+                })
+            })
+
+            PlaceHolderElement.on('click', '[data-save ="modal"]', function (event) {
+                var form = $(this).parents('.modal').find('form');
+                var actionUrl = form.attr('action');
+                var url = "/provinces/" + actionUrl;
+                var sendData = form.serialize();
+                $.post(url, sendData).done(function (data) {
+                    PlaceHolderElement.find('.modal').modal('hide');
+                })
+            })
+        });
+
+        function CallInitSelect2(Id, svUrl, place) {
+            $('#' + Id).select2({
+                width: '100%',
+                allowClear: true,
+                placeholder: place,
+                ajax: {
+                    id: function (e) { return e.id},
+                    url: svUrl,
+                    dataType: 'json',
+                    delay: 250,
+                    type: 'POST',
+                    data: function (params) {
+                        return {
+                            q: params.term,
+                            page: params.page
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 0;
+                        console.log(params.page);
+                        return {
+                            results: data.items,
+                            pagination: {
+                                more: (params.page * 20 + data.items.length) < data.TotalRecords
+
+                            }
+                        };
+                    },
+                    cache: true
+                },
+                escapeMarkup: function (markup) { return markup; },
+                minimumInputLength: 0,
+                templateResult: function (repo) {
+                    var markup = '';
+                    if (repo.loading) return repo.text;
+                    else if (repo.id == null) markup = '<table style="width: 100%;border-bottom: 1px solid black;"><tr><td style="width:20%;padding:4px; text-align: left;"><h3>' + repo.code + '</h3></td> <td style="text-align: left;"><h3>' + repo.name + '</h3></td></tr></table>';
+                    else markup = '<table style="width: 100%;"><tr><td style="color:maroon;font-weight:bold; width:20%;padding:4px; text-align: left;">' + repo.code + '</td> <td style="text-align: left;">' + repo.name + '</td></tr></table>';
+                    return markup;
+                },
+                templateSelection: function (repo) {
+                    if (repo.id == "" || repo.code == undefined) return repo.text;
+                    return repo.name;
+                }
+            });
+        }
+    </script>
+}
+<div id="PlaceHolderElement"></div>
+<div id="divListForm">
+    <div class="ibox float-e-margins">
+         <div class="ibox-title">
+            <h5>Danh sách Đơn Vị Hành Chính</h5>
+        </div>
+         <div class="ibox-content">
+            <button type="button" style="margin-bottom:5px;padding:0px; width:80px;height:34px" class="btn btn-sm btn-primary"><i class="fa fa-download"></i> File mẫu</button>
+            <button type="button" style="margin-bottom:5px;padding:0px; width:80px;height:34px" class="btn btn-sm btn-primary"> Xuất dữ liệu</button>
+            <button type="button" style="margin-bottom:5px;padding:0px; width:80px;height:34px" class="btn btn-sm btn-primary">Nhập dữ liệu</button>
+            <div class="fileinput fileinput-new" data-provides="fileinput">
+                <span class="btn btn-default btn-file">
+                    <span class=" fileinput-new">Chọn File</span>
+                    <span class=" fileinput-exists\">Chọn lại</span><input type="file" name="..." id="fileUpload" />
+                </span>
+                <span class="fileinput-filename"></span>
+                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none" id="aexit">×</a>
+            </div>
+            <button title="Thêm mới bản ghi" type="button" class="btn btn-primary" style="float:right;" data-toggle="ajax-modal" data-target="#addRegion" data-url="@Url.Action("Create")">Thêm</button>
+            <div id="divProcessing" class="processing"></div>
+             <div id="divVungMienContent">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                            <form asp-action="Index" method="get">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" style="margin-top: 8px;" />
+                                    </div>
+                                    <div class="cold-md-3">
+                                        <button type="submit" class="btn btn-primary">Tìm</button>
+                                        <button type="button" onclick="window.location.href='/AdministrativeUnit/Index'" class="btn btn-dark">Reset</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        @if (ViewBag.SuccessMsg != null)
+                        {
+                            <div id="msgAlert" class="alert alert-success" role="alert">
+                                @ViewBag.SuccessMsg
+                            </div>
+                        }
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width:50px">
+                                        Stt
+                                    </th>
+                                    <th style="width:100px">
+                                        Mã
+                                    </th>
+                                    <th style="width:200px">
+                                        Tên
+                                    </th>
+                                    <th style="width:350px">
+                                        Mô tả
+                                    </th>
+                                    <th style ="width:250px">
+                                        Ngày tạo
+                                    </th>
+                                    <th style="width:60px; text-align: center;"><a style="font-weight: bold; color: white;"><i class="far fa-times-circle" title="Xoá tất cả"></i></a></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Items)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a data-toggle="ajax-modal" data-target="#addRegion" data-url="@Url.Action($"Details/{item.Id}")"> @Html.DisplayFor(modelItem => item.OrdinalNumber)</a>
+                                        </td>
+                                        <td>
+                                            <a data-toggle="ajax-modal" data-target="#addRegion" data-url="@Url.Action($"Details/{item.Id}")">@Html.DisplayFor(modelItem => item.Code)</a>
+                                        </td>
+                                        <td>
+                                            <a data-toggle="ajax-modal" data-target="#addRegion" data-url="@Url.Action($"Details/{item.Id}")">@Html.DisplayFor(modelItem => item.Name)</a>
+                                        </td>
+                                        <td>
+                                            <a data-toggle="ajax-modal" data-target="#addRegion" data-url="@Url.Action($"Details/{item.Id}")">@Html.DisplayFor(modelItem => item.Description)</a>
+                                        </td>
+                                        <td>
+                                            <a data-toggle="ajax-modal" data-target="#addRegion" data-url="@Url.Action($"Details/{item.Id}")">@Html.DisplayFor(modelItem => item.DateCreated)</a>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <a data-toggle="ajax-modal" data-target="#addRegion" data-url="@Url.Action($"Edit/{item.Id}")"><i class="far fa-edit" title="Sửa tỉnh thành"></i></a>
+                                            <a data-toggle="ajax-modal" data-target="#addRegion" data-url="@Url.Action($"Delete/{item.Id}")"><i class="far fa-times-circle" title="Xoá tỉnh thành"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    @await Component.InvokeAsync("Pager", Model)
+                </div>
+             </div>
+        </div>
+    </div>
+</div>

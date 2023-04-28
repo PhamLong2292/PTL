@@ -1,0 +1,123 @@
+﻿@model PTL.ViewModels.RegionVm
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="modal fade" id="addRegion">
+    <div class="modal immodal" style="overflow: hidden" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="panel-heading">
+                    <div class="panel-heading">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">Chi tiết</h4>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <dl class="row">
+                        <dt class="col-sm-3">
+                                @Html.DisplayNameFor(model => model.OrdinalNumber)
+                        </dt>
+                        <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.OrdinalNumber)
+                        </dd>
+                        <dt class="col-sm-3">
+                            @Html.DisplayNameFor(model => model.Code)
+                        </dt>
+                        <dd class="col-sm-9">
+                            @Html.DisplayFor(model => model.Code)
+                        </dd>
+                        <dt class="col-sm-3">
+                                @Html.DisplayNameFor(model => model.Name)
+                        </dt>
+                        <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.Name)
+                        </dd>
+                        <dt class="col-sm-3">
+                            @Html.DisplayNameFor(model => model.Description)
+                        </dt>
+                        @if (!string.IsNullOrEmpty(Model.Description))
+                        {
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.Description)
+                            </dd>
+                        }
+                        else
+                        {
+                            <dd class="col-sm-9">
+                                Không có
+                            </dd>
+                        }
+                        <dt class="col-sm-3">
+                                @Html.DisplayNameFor(model => model.Effect)
+                            </dt>
+                        @if(Model.Effect == 0)
+                        {
+                            <dd class="col-sm-9">
+                                Không hiệu lực
+                            </dd>
+                        }
+                        else
+                        {
+                            <dd class="col-sm-9">
+                                Có hiệu lực
+                            </dd>
+                        }
+                        <dt class="col-sm-3">
+                                @Html.DisplayNameFor(model => model.DateCreated)
+                            </dt>
+                        <dd class="col-sm-9">
+                            @Html.DisplayFor(model => model.DateCreated)
+                        </dd>
+                        <dt class="col-sm-3">
+                            @Html.DisplayNameFor(model => model.StartDay)
+                        </dt>
+                        @if (Model.StartDay != null)
+                        {
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.StartDay)
+                            </dd>
+                        }
+                        else
+                        {
+                            <dd class="col-sm-9">
+                                Đã kết thúc
+                            </dd>
+                        }                      
+                        <dt class="col-sm-3">
+                            @Html.DisplayNameFor(model => model.EndDay)
+                        </dt>                    
+                        @if(Model.EndDay != null)
+                        {
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.EndDay)
+                            </dd>
+                        }
+                        else
+                        {
+                            <dd class="col-sm-9">
+                                Chưa kết thúc
+                            </dd>
+                        }              
+                        <dt class="col-sm-3">
+                            @Html.DisplayNameFor(model => model.Note)
+                        </dt>
+                        @if (!string.IsNullOrEmpty(Model.Note))
+                        {
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.Note)
+                            </dd>
+                        }
+                        else
+                        {
+                            <dd class="col-sm-9">
+                                Không có
+                            </dd>
+                        }
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
